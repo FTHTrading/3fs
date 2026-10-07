@@ -23,3 +23,7 @@ test('agentsIndex merges each live door\'s agents.json and skips failures', asyn
   const idx = await agentsIndex(doors, fetchFn, { timeoutMs: 300 });
   assert.equal(idx.length, 1); assert.equal(idx[0].door, 'a'); assert.equal(idx[0].price_usdc, '0.02');
 });
+test('a door cannot overwrite its own id in the agents index', async () => {
+  const idx = await agentsIndex([doors[0]], async () => ok([{ door: 'usda', endpoint: 'x' }]), { timeoutMs: 300 });
+  assert.equal(idx[0].door, 'a');
+});

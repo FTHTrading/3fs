@@ -2,7 +2,7 @@
 <!doctype html><html lang="en"><head>{{HEAD}}</head><body>{{HEADER}}
 <main class="wrap">
   <h1>For agents</h1>
-  <p class="muted" style="margin:8px 0 14px">Machine-readable index at <a class="mono" href="/api/agents.json">/api/agents.json</a>. Pay per call with x402 (USDC on Base) or send a Pro key as a Bearer token. Identity: each 3FS door registers an ERC-8004 agent identity that points back to the <a href="/.well-known/3fs.json">signed origins file</a>.</p>
+  <p class="muted" style="margin:8px 0 14px">Machine-readable index at <a class="mono" href="/api/agents.json">/api/agents.json</a>. Pay per call with x402 (USDC on Base) or send a Pro key as a Bearer token. Identity: each 3FS door will register an ERC-8004 agent identity pointing back to the <a href="/.well-known/3fs.json">signed origins file</a>.</p>
   <section class="glass card"><table class="tbl" id="agents"><thead><tr><th>Door</th><th>Endpoint</th><th>Price</th><th>Network</th><th>MCP</th></tr></thead><tbody><tr><td colspan="5" class="muted">Loading…</td></tr></tbody></table></section>
   <section class="glass card" style="margin-top:14px"><h2>Add to Claude Code</h2><pre class="code" style="margin-top:10px">claude mcp add --transport http usda-3fs https://usda.3fs.app/mcp</pre></section>
 </main>

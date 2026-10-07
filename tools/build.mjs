@@ -40,6 +40,7 @@ export async function build(door, opts = {}) {
   if (await exists(path.join(KIT, 'fn'))) copied += await copyDir(path.join(KIT, 'fn'), path.join(fns, '_kit'));
   if (await exists(path.join(KIT, 'js', 'ref.js'))) { await fs.mkdir(path.join(fns, '_kit'), { recursive: true }); await fs.copyFile(path.join(KIT, 'js', 'ref.js'), path.join(fns, '_kit', 'ref.js')); copied++; }
   if (await exists(path.join(D, 'src', 'hub.js'))) { await fs.copyFile(path.join(D, 'src', 'hub.js'), path.join(pub, 'hub.js')); copied++; }
+  for (const [src, dst] of Object.entries(doorCfg.copy_to || {})) if (await exists(path.join(D, src))) { await fs.mkdir(path.dirname(path.join(pub, dst)), { recursive: true }); await fs.copyFile(path.join(D, src), path.join(pub, dst)); copied++; }
   for (const extra of (doorCfg.copy || [])) if (await exists(path.join(D, extra))) { await fs.copyFile(path.join(D, extra), path.join(pub, path.basename(extra))); copied++; }
   // fragments
   const frag = {};

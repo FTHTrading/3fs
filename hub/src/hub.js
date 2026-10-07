@@ -9,7 +9,7 @@ async function home() {
   try {
     const h = await getJson('/api/health');
     const usda = (h.doors || []).find(d => d.id === 'usda');
-    $('#t-areas').textContent = usda && usda.health && usda.health.areas ? usda.health.areas.toLocaleString('en-US') : (usda && usda.status === 'live' ? '2,724' : '—');
+    $('#t-areas').textContent = usda && usda.health && usda.health.areas ? Number(usda.health.areas).toLocaleString('en-US') : '—';
     $('#t-doors').textContent = String((h.doors || []).filter(d => d.status === 'live').length);
     const sha = usda && usda.health && usda.health.source && usda.health.source.sha256; $('#t-sha').textContent = sha ? sha.slice(0, 16) + '…' : '—';
   } catch { ['#t-areas', '#t-doors', '#t-sha'].forEach(s => { $(s).textContent = '—'; }); }
@@ -57,7 +57,7 @@ async function claim() {
       if (j.status === 'claimed') { box.innerHTML = `<p>${esc(j.message)}</p>`; return; }
       box.innerHTML = `<p class="muted">${esc(j.message || 'Setting up…')}</p>`;
     } catch { box.innerHTML = '<p class="muted">Still checking…</p>'; }
-    if (++tries < 20) setTimeout(poll, 3000); else box.innerHTML = '<p>We could not confirm the payment yet. Email <a href="mailto:kevan@unykorn.org">kevan@unykorn.org</a> with your receipt and we will set you up by hand.</p>';
+    if (++tries < 15) setTimeout(poll, 6000); else box.innerHTML = '<p>We could not confirm the payment yet. Email <a href="mailto:kevan@unykorn.org">kevan@unykorn.org</a> with your receipt and we will set you up by hand.</p>';
   };
   poll();
 }
@@ -73,4 +73,18 @@ function affiliates() {
   });
 }
 
-home(); doors(); agents(); verify(); claim(); affiliates();
+async function proLink() {
+  const a = $('#get-pro'); if (!a) return;
+  try { const h = await getJson('/api/health'); if (h.pro_link && /^https:\/\/buy\.stripe\.com\//.test(h.pro_link)) { a.setAttribute('data-stripe', h.pro_link); a.href = h.pro_link; if (window.ThreeFS && window.ThreeFS.ref) window.ThreeFS.ref.apply(); } } catch { /* keep the default */ }
+}
+function ask() {
+  const f = $('#ask-form'); if (!f) return;
+  f.addEventListener('submit', async e => {
+    e.preventDefault(); const q = new FormData(f).get('q'); const out = $('#ask-out'); out.textContent = 'One moment…';
+    try {
+      const j = await getJson('/api/guide', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ messages: [{ role: 'user', content: q }] }) });
+      out.innerHTML = esc(j.text).replace(/(https:\/\/[a-z0-9.-]+\.?3fs\.app[^\s]*)/gi, '<a href="$1">$1</a>');
+    } catch { out.textContent = 'Could not reach the guide. Pick a door above.'; }
+  });
+}
+home(); doors(); agents(); verify(); claim(); affiliates(); proLink(); ask();

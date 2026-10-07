@@ -15,3 +15,10 @@ test('a lookalike origin fails even with a valid signature', async () => {
   const k = kp(); const signed = await signOrigins({ ...payload, origins: [...payload.origins, 'https://3fs-app.com'] }, k.priv);
   assert.equal(await verifyOrigins(signed, k.pub), false);
 });
+test('the committed signed registry matches origins.json and verifies with the committed public key', async () => {
+  const fs = await import('node:fs');
+  const signed = JSON.parse(fs.readFileSync('hub/origins.signed.json', 'utf8')), src = JSON.parse(fs.readFileSync('hub/origins.json', 'utf8'));
+  assert.deepEqual(signed.payload, src);
+  assert.equal(await verifyOrigins(signed, fs.readFileSync('hub/origins.pub.pem', 'utf8')), true);
+  assert.ok(signed.pub && signed.pub.includes('BEGIN PUBLIC KEY'));
+});

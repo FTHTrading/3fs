@@ -15,5 +15,5 @@ const payload = JSON.parse(await fs.readFile('hub/origins.json', 'utf8'));
 const signed = await signOrigins(payload, priv.replace(/\\n/g, '\n'));
 const pub = await fs.readFile('hub/origins.pub.pem', 'utf8');
 if (!(await verifyOrigins(signed, pub))) { console.error('signature does not verify against hub/origins.pub.pem'); process.exit(1); }
-await fs.writeFile('hub/origins.signed.json', JSON.stringify(signed, null, 2));
+await fs.writeFile('hub/origins.signed.json', JSON.stringify({ ...signed, pub }, null, 2));
 console.log('signed', payload.origins.length, 'origins');

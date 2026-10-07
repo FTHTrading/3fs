@@ -19,7 +19,7 @@ export async function aggregate(doors, fetchFn = fetch, { timeoutMs = 3000 } = {
 export async function agentsIndex(doors, fetchFn = fetch, { timeoutMs = 3000 } = {}) {
   const lists = await Promise.all(doors.filter(d => d.status === 'live' && d.agents_url).map(async d => {
     const r = await fetchJson(fetchFn, d.agents_url, timeoutMs);
-    return r.ok && Array.isArray(r.body) ? r.body.map(e => ({ door: d.id, ...e })) : [];
+    return r.ok && Array.isArray(r.body) ? r.body.map(e => ({ ...e, door: d.id })) : [];
   }));
   return lists.flat();
 }

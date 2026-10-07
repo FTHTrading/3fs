@@ -3,7 +3,7 @@ import { json, preflight, sha256hex, limited } from '../../_kit/core.js';
 
 export async function onRequest({ request, env }) {
   if (request.method === 'OPTIONS') return preflight();
-  if (await limited(env, request, 'claim', 10, 60)) return json({ error: 'rate_limited' }, 429);
+  if (await limited(env, request, 'claim', 30, 120)) return json({ error: 'rate_limited' }, 429);
   const sid = new URL(request.url).searchParams.get('session_id') || '';
   if (!/^cs_(live|test)_[A-Za-z0-9]{10,200}$/.test(sid)) return json({ error: 'bad_session' }, 400);
   const row = await env.DB.prepare('SELECT email, status, key_hash FROM pro_accounts WHERE session_id = ?').bind(sid).first();

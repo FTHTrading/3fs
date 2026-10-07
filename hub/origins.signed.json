@@ -24,5 +24,6 @@
     }
   },
   "alg": "Ed25519",
-  "sig": "uOcONUxNtLkxDTJaSLnvclN_z1034i49GJmFI_VHDr7mvPHEcIU74eXHvMMO1gt8VwNFSz4oZYFkiaWzkd6qDw"
+  "sig": "uOcONUxNtLkxDTJaSLnvclN_z1034i49GJmFI_VHDr7mvPHEcIU74eXHvMMO1gt8VwNFSz4oZYFkiaWzkd6qDw",
+  "pub": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEArO+xMMTotQJOua0lOhcFdHYKeuGRor2co/sX9vR0Qps=\n-----END PUBLIC KEY-----\n"
 }

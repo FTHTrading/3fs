@@ -31,5 +31,8 @@
   ],
   "copy": [
     "doors.json"
-  ]
+  ],
+  "copy_to": {
+    "origins.pub.pem": ".well-known/3fs.pub.pem"
+  }
 }

@@ -19,4 +19,14 @@ X402_NETWORK = "base"
 X402_PRICE_USDC = "0.02"
 X402_PAY_TO = "0xFCc1D28Ad797d65CDDb2A7219c5BE6B062653cb3"
 X402_FACILITATOR_URL = "https://x402.org/facilitator"
-# secrets (wrangler pages secret put): STRIPE_WEBHOOK_SECRET, CDP_API_KEY_ID, CDP_API_KEY_SECRET, ORIGINS_SIGNING_KEY, NOTIFY_WEBHOOK, NOTIFY_TOKEN
+[env.preview.vars]
+SITE = "https://sandbox.3fs-hub.pages.dev"
+PRO_LINK = "https://buy.stripe.com/test_REPLACE_WITH_TEST_LINK"
+BILLING_LINK = "https://billing.stripe.com/p/login/test_REPLACE"
+TEAM_INBOX = "kevan@unykorn.org"
+X402_NETWORK = "base-sepolia"
+X402_PRICE_USDC = "0.02"
+X402_PAY_TO = "0xFCc1D28Ad797d65CDDb2A7219c5BE6B062653cb3"
+X402_FACILITATOR_URL = "https://x402.org/facilitator"
+
+# secrets (wrangler pages secret put): STRIPE_WEBHOOK_SECRET, CDP_API_KEY_ID, CDP_API_KEY_SECRET, NOTIFY_WEBHOOK, NOTIFY_TOKEN
