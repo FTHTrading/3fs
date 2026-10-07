@@ -1,0 +1,28 @@
+{
+  "payload": {
+    "issued": "2026-10-07",
+    "operator": "UnyKorn LLC",
+    "contact": "kevan@unykorn.org",
+    "origins": [
+      "https://3fs.app",
+      "https://usda.3fs.app",
+      "https://grants.3fs.app",
+      "https://lending.3fs.app",
+      "https://file.3fs.app",
+      "https://give.3fs.app",
+      "https://fund.3fs.app"
+    ],
+    "never": [
+      "3FS never asks you to connect a wallet, send crypto, or pay a fee to receive a grant or loan decision."
+    ],
+    "agents": {
+      "erc8004": {
+        "chain": "base",
+        "registry": "",
+        "ids": {}
+      }
+    }
+  },
+  "alg": "Ed25519",
+  "sig": "uOcONUxNtLkxDTJaSLnvclN_z1034i49GJmFI_VHDr7mvPHEcIU74eXHvMMO1gt8VwNFSz4oZYFkiaWzkd6qDw"
+}
