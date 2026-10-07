@@ -5,6 +5,9 @@ node_modules/
 */public/brand/
 */public/_headers
 */public/*.html
+!*/public/_redirects
+*/public/hub.js
+*/public/doors.json
 */functions/_kit/
 *.tgz
 .dev.vars

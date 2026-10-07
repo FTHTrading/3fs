@@ -1,1 +1,35 @@
-{ "door": "3fs.app", "name": "3FS", "url": "https://3fs.app", "payout_flat_usd": 25 }
+{
+  "door": "3fs.app",
+  "name": "3FS",
+  "url": "https://3fs.app",
+  "payout_flat_usd": 25,
+  "nav": [
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Doors",
+      "href": "/doors"
+    },
+    {
+      "label": "How it works",
+      "href": "/how"
+    },
+    {
+      "label": "Pro",
+      "href": "/pro"
+    },
+    {
+      "label": "Agents",
+      "href": "/agents"
+    },
+    {
+      "label": "Affiliates",
+      "href": "/affiliates"
+    }
+  ],
+  "copy": [
+    "doors.json"
+  ]
+}

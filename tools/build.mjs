@@ -39,6 +39,8 @@ export async function build(door, opts = {}) {
   if (await exists(path.join(KIT, '_headers'))) { await fs.copyFile(path.join(KIT, '_headers'), path.join(pub, '_headers')); copied++; }
   if (await exists(path.join(KIT, 'fn'))) copied += await copyDir(path.join(KIT, 'fn'), path.join(fns, '_kit'));
   if (await exists(path.join(KIT, 'js', 'ref.js'))) { await fs.mkdir(path.join(fns, '_kit'), { recursive: true }); await fs.copyFile(path.join(KIT, 'js', 'ref.js'), path.join(fns, '_kit', 'ref.js')); copied++; }
+  if (await exists(path.join(D, 'src', 'hub.js'))) { await fs.copyFile(path.join(D, 'src', 'hub.js'), path.join(pub, 'hub.js')); copied++; }
+  for (const extra of (doorCfg.copy || [])) if (await exists(path.join(D, extra))) { await fs.copyFile(path.join(D, extra), path.join(pub, path.basename(extra))); copied++; }
   // fragments
   const frag = {};
   for (const f of ['head', 'header', 'footer']) frag[f.toUpperCase()] = await fs.readFile(path.join(KIT, 'fragments', f + '.html'), 'utf8');
@@ -47,7 +49,9 @@ export async function build(door, opts = {}) {
   for (const f of (await fs.readdir(pagesDir)).filter(f => f.endsWith('.html')).sort()) {
     const tpl = await fs.readFile(path.join(pagesDir, f), 'utf8');
     const m = meta(tpl);
-    const vars = { DOOR: doorCfg.door, NAME: doorCfg.name, URL: doorCfg.url, TITLE: m.title || doorCfg.name, DESC: m.desc || '', PATH: m.path || '/' + f.replace(/\.html$/, '') };
+    const PATH = m.path || '/' + f.replace(/\.html$/, '');
+    const NAV = (doorCfg.nav || []).map(n => `<a href="${n.href}"${n.href === PATH ? ' class="active"' : ''}${n.cta ? ' class="cta"' : ''}>${n.label}</a>`).join('');
+    const vars = { DOOR: doorCfg.door, NAME: doorCfg.name, URL: doorCfg.url, TITLE: m.title || doorCfg.name, DESC: m.desc || '', PATH, NAV, PAYOUT: String(doorCfg.payout_flat_usd || 25) };
     const inner = render(tpl, { ...vars, HEAD: render(frag.HEAD, vars), HEADER: render(frag.HEADER, vars), FOOTER: render(frag.FOOTER, vars) });
     if (!opts.dry) await fs.writeFile(path.join(pub, f), inner.replace(/<!--\s*meta:[\s\S]*?-->\n?/, ''));
     pages.push(f);

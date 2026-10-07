@@ -1,0 +1,29 @@
+<!-- meta: {"title":"3FS Affiliates","desc":"Send people to 3FS. Get a flat, disclosed payout for every paid Pro signup.","path":"/affiliates"} -->
+<!doctype html><html lang="en"><head>{{HEAD}}</head><body>{{HEADER}}
+<main class="wrap wrap-narrow">
+  <h1>Affiliates and partners</h1>
+  <div class="grid2" style="margin-top:14px">
+    <section class="glass card">
+      <h2>How it works</h2>
+      <ol class="steps" style="margin:12px 0 0;padding:0">
+        <li><div>You get a link: <span class="mono">3fs.app/a/your-code</span>. Share it anywhere.</div></li>
+        <li><div>Anyone who comes through it and buys Pro is counted to you, for 90 days.</div></li>
+        <li><div>You are paid <b>${{PAYOUT}} flat</b> per paid signup, monthly. Never a percentage, never hidden. Families never pay anything.</div></li>
+      </ol>
+      <p class="small muted" style="margin-top:12px">Say what 3FS is: a technology service that finds and files. Do not say we are a government agency or a lender, or promise approval. <a href="/verify">Media kit and approved wording</a>.</p>
+    </section>
+    <section class="glass card">
+      <h2>Apply</h2>
+      <form id="aff-form" style="display:grid;gap:10px;margin-top:10px">
+        <label class="lbl">Name or channel<input class="text" name="name" required maxlength="80"></label>
+        <label class="lbl">Email<input class="text" name="contact" type="email" required maxlength="120"></label>
+        <label class="lbl">Where you'll share it<textarea class="text" name="message" rows="3" maxlength="600" required></textarea></label>
+        <button class="btn btn-primary" type="submit">Apply</button>
+        <p class="small muted" id="aff-out"></p>
+      </form>
+    </section>
+  </div>
+</main>
+{{FOOTER}}
+<script type="module" src="/hub.js"></script>
+</body></html>
