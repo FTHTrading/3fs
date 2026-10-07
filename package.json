@@ -9,9 +9,15 @@
     "test": "node --test tests/kit/*.test.mjs hub/tests/*.test.mjs",
     "check": "node --check tools/build.mjs && for f in kit/fn/*.js kit/js/*.js hub/functions/api/*.js hub/functions/api/*/*.js hub/functions/*.js hub/functions/a/*.js hub/functions/.well-known/*.js; do [ -f \"$f\" ] && { node --check \"$f\" || exit 1; }; done; true",
     "build:hub": "node tools/build.mjs hub",
-    "deploy:hub": "npm run build:hub && wrangler pages deploy hub/public --project-name 3fs-hub --commit-dirty=true"
+    "deploy:hub": "npm run build:hub && cd hub && wrangler pages deploy public --project-name 3fs-hub --branch main --commit-dirty=true"
   },
-  "dependencies": { "pdf-lib": "1.17.1" },
-  "devDependencies": { "wrangler": "^4" },
-  "engines": { "node": ">=20" }
+  "dependencies": {
+    "pdf-lib": "1.17.1"
+  },
+  "devDependencies": {
+    "wrangler": "^4"
+  },
+  "engines": {
+    "node": ">=20"
+  }
 }
