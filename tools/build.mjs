@@ -38,6 +38,7 @@ export async function build(door, opts = {}) {
   if (await exists(path.join(KIT, 'brand'))) copied += await copyDir(path.join(KIT, 'brand'), path.join(pub, 'brand'));
   if (await exists(path.join(KIT, '_headers'))) { await fs.copyFile(path.join(KIT, '_headers'), path.join(pub, '_headers')); copied++; }
   if (await exists(path.join(KIT, 'fn'))) copied += await copyDir(path.join(KIT, 'fn'), path.join(fns, '_kit'));
+  if (await exists(path.join(KIT, 'js', 'ref.js'))) { await fs.mkdir(path.join(fns, '_kit'), { recursive: true }); await fs.copyFile(path.join(KIT, 'js', 'ref.js'), path.join(fns, '_kit', 'ref.js')); copied++; }
   // fragments
   const frag = {};
   for (const f of ['head', 'header', 'footer']) frag[f.toUpperCase()] = await fs.readFile(path.join(KIT, 'fragments', f + '.html'), 'utf8');

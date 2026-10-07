@@ -5,6 +5,7 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
+    "pretest": "node tools/build.mjs hub",
     "test": "node --test tests/kit/*.test.mjs hub/tests/*.test.mjs",
     "check": "node --check tools/build.mjs && for f in kit/fn/*.js kit/js/*.js hub/functions/api/*.js hub/functions/api/*/*.js hub/functions/*.js; do [ -f \"$f\" ] && { node --check \"$f\" || exit 1; }; done; true",
     "build:hub": "node tools/build.mjs hub",

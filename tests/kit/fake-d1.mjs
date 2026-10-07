@@ -15,7 +15,7 @@ export function fakeD1() {
         if (/^UPDATE pro_accounts SET affiliate_code/i.test(s)) { const [code, sid] = args; const r = tables.pro_accounts.find(r => r.session_id === sid); if (r) r.affiliate_code = code; return { meta: { changes: r ? 1 : 0 } }; }
         if (/^UPDATE pro_accounts SET key_hash/i.test(s)) { const [hash, claimed, sid] = args; const r = tables.pro_accounts.find(r => r.session_id === sid && r.key_hash == null); if (r) { r.key_hash = hash; r.claimed = claimed; } return { meta: { changes: r ? 1 : 0 } }; }
         if (/^UPDATE pro_accounts SET status/i.test(s)) { const [status, sub] = args; let n = 0; for (const r of tables.pro_accounts) if (r.subscription === sub) { r.status = status; n++; } return { meta: { changes: n } }; }
-        if (/^INSERT INTO referrals/i.test(s)) { const [code, session_id, ts] = args; if (tables.referrals.some(r => r.session_id === session_id)) return { meta: { changes: 0 } }; tables.referrals.push({ code, session_id, ts, paid: 0 }); return { meta: { changes: 1 } }; }
+        if (/^INSERT (OR IGNORE )?INTO referrals/i.test(s)) { const [code, session_id, ts] = args; if (tables.referrals.some(r => r.session_id === session_id)) return { meta: { changes: 0 } }; tables.referrals.push({ code, session_id, ts, paid: 0 }); return { meta: { changes: 1 } }; }
         if (/^INSERT INTO affiliates/i.test(s)) { const [code, name, contact, payout, status, created] = args; tables.affiliates.push({ code, name, contact, payout_flat_usd: payout, status, created }); return { meta: { changes: 1 } }; }
         throw new Error('fakeD1.run: unsupported SQL: ' + s);
       },
