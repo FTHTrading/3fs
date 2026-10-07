@@ -1,1 +1,23 @@
-/* 3FS kit tokens — filled in Task 2 */
+/* 3FS design tokens. Shared by every 3FS door. Light theme only. Source look: usda.3fs.app / 3fs.app */
+:root {
+  --field: #A30D22;   /* 3FS crimson: primary action, live status, the mark */
+  --volt: #6E0717;    /* deep crimson: links, pressed states */
+  --field2: #E89AA3;  /* crimson tint: accents, gradients */
+  --ink: #111214;     /* text, dark band */
+  --ink2: #30343A;    /* body text on cards */
+  --muted: #5F646C;   /* secondary text */
+  --bg: #F7F7F4;      /* page background */
+  --line: #D8DADF;    /* card edges, rules */
+  --glass: #FFFFFF;
+  --pale: #FAF0F1;    /* crimson wash for callouts */
+  --gold: #B8860B; --warn: #a8700f; --bad: #c2362f;
+  --shadow: 0 1px 0 rgba(255,255,255,.9) inset, 0 14px 34px -12px rgba(26,50,84,.24), 0 2px 6px rgba(26,50,84,.06);
+  --shadow-lg: 0 1px 0 rgba(255,255,255,.95) inset, 0 30px 60px -20px rgba(26,50,84,.32), 0 4px 12px rgba(26,50,84,.08);
+  --r: 10px; --r-sm: 6px;
+  --sans: "Inter", Helvetica, Arial, sans-serif;
+  --display: "Inter", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --wrap: 1120px;
+  color-scheme: light;
+}
+html { font-family: Inter, Helvetica, Arial, sans-serif; }
