@@ -3,7 +3,7 @@ const base = (process.argv[2] || 'https://3fs.app').replace(/\/$/, '');
 let fails = 0;
 const ok = (name, cond, extra = '') => { console.log((cond ? 'PASS ' : 'FAIL ') + name + (extra ? '  ' + extra : '')); if (!cond) fails++; };
 const get = (p, init) => fetch(base + p, { redirect: 'manual', ...init });
-for (const p of ['/', '/doors', '/how', '/pro', '/agents', '/affiliates', '/verify', '/about', '/terms', '/privacy', '/pro/claim', '/doors.json', '/kit/kit.css', '/brand/3fs-mark.svg']) {
+for (const p of ['/', '/doors', '/how', '/pro', '/agents', '/affiliates', '/verify', '/about', '/terms', '/privacy', '/pro-claim', '/doors.json', '/kit/kit.css', '/brand/3fs-mark.svg']) {
   const r = await get(p); ok('GET ' + p, r.status === 200, String(r.status));
 }
 const home = await get('/');

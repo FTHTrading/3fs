@@ -1,4 +1,4 @@
-// GET /api/agents.json is served by this file via _redirects rewrite; also reachable at /api/agents
+// GET /api/agents.json -> every x402 endpoint across the live doors
 import { json } from '../_kit/core.js';
 import { agentsIndex } from '../_aggregate.js';
 import DOORS from '../../doors.json';
