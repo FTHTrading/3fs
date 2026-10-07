@@ -155,3 +155,17 @@ Later doors add: lending (LDX term-sheet fee), file (packet/filing fee), give/fu
 - Team inbox for cases (default kevan@unykorn.org) and the price list for paid packet work.
 - Stripe: reuse the existing Pro Payment Link or create "3FS Pro" (one product, all doors). Recommendation: reuse, rename the product to "3FS Pro".
 - DNS: `3fs.app` currently points at the Gemini-built Worker/Pages; cut over to the new hub project at ship.
+
+## 11. Additions approved 2026-10-07 (Kevan)
+
+**Positioning.** Everything the "question-mark suit" free-government-money books sold in the 80s and 90s — grants, loans, programs, benefits — 3FS finds for *your* situation and **does the work**: finds it, fills it, hands you a mail-ready or email-ready packet. "Not 'read this'. 'Here's what you need, here's what we'll do, you just send it.'"
+
+**Categories added to the grants registry** (same row schema, `category` column): Home (buy/build/repair/energy) · Education (Pell/FAFSA prep, state scholarships e.g. Georgia HOPE/Zell, workforce grants, loan forgiveness) · Business (grants, SBA, incentives, OZ) · Veterans · Seniors · Health & disability · Farmers & rural (USDA grants) · Disaster relief · Artists & creators · Money owed (unclaimed property, settlements, refunds). Launch registry target rises to ≥ 250 verified rows.
+
+**"We do all the work" (pulled forward into cycle 1, basic form).** For every registry row with a known form: `forms[]` entries carry the official PDF URL, a field map (form field → fact key) and signature spots. `/api/packet` fills AcroForm PDFs with pdf-lib from the person's facts, adds a cover letter, instructions, mailing address or submit URL, and a checklist of what to attach. Unknown forms get the packet without the filled form plus a Send-to-the-team button. Nothing is sent by 3FS without the person pressing Send (email) or printing (mail). Full identity/KYC-bound filing is still file.3fs.app (cycle 3).
+
+**Affiliates and influencers.** Kit `ref.js` captures `?ref=CODE` on any door into localStorage (90 days) and passes it as Stripe `client_reference_id` on the Pro link; the webhook stores `affiliate_code` on the account. D1 `affiliates` (code, name, contact, payout_flat_usd, status) and `referrals` (code, session_id, ts, paid). Hub `/affiliates`: how it works, flat payout per paid Pro signup (amount set by Kevan, shown publicly), apply form, per-affiliate landing page `/a/<code>` with their name on it, monthly payout report at `/admin/affiliates`. Flat disclosed payouts only, never a percentage, never hidden (partner rule). Influencers get a media kit page (marks, one-liners, approved claims).
+
+**Web3 / namespace safety.** Published list of official 3FS origins at `3fs.app/.well-known/3fs.json` (signed with a UnyKorn key; every door links to it); each door registers an ERC-8004 agent identity whose metadata points back to that file; hub `/verify` page explains how to tell a real 3FS door from a lookalike; CSP + SRI + HSTS on every door; no wallet-connect prompts anywhere a family lands.
+
+**Sandbox.** Every door has a `sandbox` branch deploy (`wrangler pages deploy --branch sandbox` → `sandbox.<project>.pages.dev`) with its own D1, Stripe test link and x402 on Base Sepolia (CDP already lists it). Kit ships `tools/sandbox.mjs` to create/reset it. Anything can be demoed or handed to a partner from sandbox at any time.
