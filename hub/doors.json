@@ -1,0 +1,8 @@
+[
+  { "id": "usda",    "name": "Rural Home",   "url": "https://usda.3fs.app",    "purpose": "USDA rural home loans. FY2026 income limits for any ZIP, with the source page.", "status": "live", "cycle": 0, "health": "https://usda.3fs.app/api/health", "agents_url": "https://usda.3fs.app/api/agents.json" },
+  { "id": "grants",  "name": "Free Money",   "url": "https://grants.3fs.app",  "purpose": "Money you don't pay back: grants, down-payment help, repair, education, veterans, settlements. Found and filled for you.", "status": "soon", "cycle": 1 },
+  { "id": "lending", "name": "Lending",      "url": "https://lending.3fs.app", "purpose": "Commercial and real-estate credit: permanent, bridge, construction, mezzanine, C-PACE, SBA.", "status": "soon", "cycle": 2 },
+  { "id": "file",    "name": "File",         "url": "https://file.3fs.app",    "purpose": "One intake, verified once. The AI fills every form for any door.", "status": "soon", "cycle": 3 },
+  { "id": "give",    "name": "Give",         "url": "https://give.3fs.app",    "purpose": "The 3FS giving token: donors fund, families receive, every move on a ledger.", "status": "soon", "cycle": 4 },
+  { "id": "fund",    "name": "Fund",         "url": "https://fund.3fs.app",    "purpose": "A verified family need becomes a fundable record.", "status": "soon", "cycle": 4 }
+]
