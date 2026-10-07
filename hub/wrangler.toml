@@ -19,6 +19,14 @@ X402_NETWORK = "base"
 X402_PRICE_USDC = "0.02"
 X402_PAY_TO = "0xFCc1D28Ad797d65CDDb2A7219c5BE6B062653cb3"
 X402_FACILITATOR_URL = "https://x402.org/facilitator"
+[[env.preview.d1_databases]]
+binding = "DB"
+database_name = "3fs-sandbox"
+database_id = "599cc4f2-17bd-4812-9899-de2de9f920bb"
+
+[env.preview.ai]
+binding = "AI"
+
 [env.preview.vars]
 SITE = "https://sandbox.3fs-hub.pages.dev"
 PRO_LINK = "https://buy.stripe.com/test_REPLACE_WITH_TEST_LINK"
