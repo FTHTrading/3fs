@@ -8,3 +8,5 @@ node_modules/
 */functions/_kit/
 *.tgz
 .dev.vars
+.claude/
+.skipper/
