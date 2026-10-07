@@ -13,3 +13,4 @@ node_modules/
 .dev.vars
 .claude/
 .skipper/
+.secrets/
