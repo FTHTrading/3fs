@@ -1,0 +1,10 @@
+node_modules/
+.wrangler/
+.superpowers/
+*/public/kit/
+*/public/brand/
+*/public/_headers
+*/public/*.html
+*/functions/_kit/
+*.tgz
+.dev.vars
